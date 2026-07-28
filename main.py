@@ -4,19 +4,24 @@
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
 import os
-import pathlib
-import sys
 import shutil
 
 def moveToFolder(file, extension):
    source = "input/" + file
-   if (extension == "jpeg" or extension == "jpg"):
+   if extension == "jpeg" or extension == "jpg" or extension == "png" or extension == "webp":
        destination = "output/image/"
 
    else:
     destination = "output/" + extension + "/"
 
-   shutil.move(source, destination)
+   try:
+    shutil.move(source, destination)
+   except FileNotFoundError:
+       os.makedirs(destination)
+       shutil.move(source, destination)
+   except FileExistsError:
+       print("File already exists\nRenaming it")
+       shutil.move(source, destination + file + "_1")
 
 def identifyFileType(fileName):
     return fileName.split('.')[-1]

@@ -199,10 +199,12 @@ __marimo__/
 .DS_Store
 .DS_Store?
 ._*
+.idea/
 
 # Local inputs and outputs
 input/*
 !input/.gitkeep
 output/*
 !output/.gitkeep
+
 
